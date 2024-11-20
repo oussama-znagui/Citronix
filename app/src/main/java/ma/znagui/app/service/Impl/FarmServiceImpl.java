@@ -3,6 +3,7 @@ package ma.znagui.app.service.Impl;
 import ma.znagui.app.dto.farm.FarmCreateDTO;
 import ma.znagui.app.dto.farm.FarmResponseDTO;
 import ma.znagui.app.entity.Farm;
+import ma.znagui.app.entity.Field;
 import ma.znagui.app.exception.ResourceNotFoundExeption;
 import ma.znagui.app.mapper.FarmMapper;
 import ma.znagui.app.repository.FarmRepository;
@@ -33,4 +34,16 @@ public class FarmServiceImpl implements FarmService {
         return mapper.farmToResponseDTO(farm);
     }
 
+    public Farm getFieldEntityByID(Long id) {
+        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundExeption("Farm",id));
+    }
+
+    public Double getFarmfreeArea(Farm farm){
+        if (farm.getFields() == null){
+            return farm.getArea();
+        }else {
+            Double usedArea  = farm.getFields().stream().mapToDouble(Field::getArea).sum();
+            return farm.getArea() - usedArea;
+        }
+    }
 }

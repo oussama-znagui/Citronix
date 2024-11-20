@@ -2,6 +2,10 @@ package ma.znagui.app.controller;
 
 import jakarta.validation.Valid;
 import ma.znagui.app.dto.field.FieldCreateDTO;
+import ma.znagui.app.dto.field.FieldResponseDTO;
+import ma.znagui.app.entity.Field;
+import ma.znagui.app.service.FieldService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,10 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/field")
 public class FieldController {
+    @Autowired
+    FieldService service;
 
     @PostMapping
-    public ResponseEntity<String> createField(@Valid @RequestBody FieldCreateDTO dto){
-        return ResponseEntity.ok("bonjour");
+    public ResponseEntity<FieldResponseDTO> createField(@Valid @RequestBody FieldCreateDTO dto){
+
+        return ResponseEntity.ok(service.createField(dto));
     }
 
 }

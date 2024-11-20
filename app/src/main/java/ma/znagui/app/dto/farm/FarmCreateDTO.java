@@ -16,6 +16,7 @@ public class FarmCreateDTO {
     private String name;
     @NotBlank(message = "la localisation de la ferme svp")
     private String location;
+
     @NotNull(message = "la superficie de la ferme svp!")
     @Min(value = 2000)
     private Double area;

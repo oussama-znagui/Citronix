@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -21,4 +22,7 @@ public class Tree {
     @ManyToOne
     @JoinColumn(name = "field_id")
     private Field field;
+
+    @OneToMany(mappedBy = "tree")
+    private List<HarvestTree> harvestTreesDetails;
 }

@@ -1,9 +1,6 @@
 package ma.znagui.app.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +8,7 @@ import ma.znagui.app.enums.HarvestStatus;
 import ma.znagui.app.enums.Season;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -24,5 +22,8 @@ public class Harvest {
     private Season season;
     private HarvestStatus status;
     private LocalDate date;
+
+    @OneToMany(mappedBy = "harvest")
+    private List<HarvestTree> harvestTreesDetails;
 
 }
