@@ -3,11 +3,14 @@ package ma.znagui.app.service.Impl;
 import ma.znagui.app.dto.farm.FarmCreateDTO;
 import ma.znagui.app.dto.farm.FarmResponseDTO;
 import ma.znagui.app.entity.Farm;
+import ma.znagui.app.exception.ResourceNotFoundExeption;
 import ma.znagui.app.mapper.FarmMapper;
 import ma.znagui.app.repository.FarmRepository;
 import ma.znagui.app.service.FarmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 
 @Service
 public class FarmServiceImpl implements FarmService {
@@ -19,7 +22,15 @@ public class FarmServiceImpl implements FarmService {
 
     public FarmResponseDTO create(FarmCreateDTO dto) {
         Farm toCreate = mapper.createDTOtofarm(dto);
+        toCreate.setCreationDate(LocalDate.now());
         Farm created = repository.save(toCreate);
         return mapper.farmToResponseDTO(created);
     }
+
+
+    public FarmResponseDTO getOneFarm(Long id) {
+        Farm farm = repository.findById(id).orElseThrow(() -> new ResourceNotFoundExeption("Farm",id));
+        return mapper.farmToResponseDTO(farm);
+    }
+
 }

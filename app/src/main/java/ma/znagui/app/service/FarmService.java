@@ -5,4 +5,5 @@ import ma.znagui.app.dto.farm.FarmResponseDTO;
 
 public interface FarmService {
     public FarmResponseDTO create(FarmCreateDTO dto);
+    public FarmResponseDTO getOneFarm(Long id);
 }
