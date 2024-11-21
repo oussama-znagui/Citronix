@@ -5,7 +5,7 @@ import ma.znagui.app.dto.farm.FarmResponseDTO;
 import ma.znagui.app.entity.Farm;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = FieldMapper.class)
 public interface FarmMapper {
 
     public Farm createDTOtofarm(FarmCreateDTO dto);

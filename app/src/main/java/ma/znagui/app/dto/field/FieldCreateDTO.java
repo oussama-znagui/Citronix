@@ -1,5 +1,6 @@
 package ma.znagui.app.dto.field;
 
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,6 +14,7 @@ import ma.znagui.app.validation.api.CheckExisting;
 @NoArgsConstructor
 public class FieldCreateDTO {
     @NotNull(message = "le superficie du champ SVP!")
+    @Min(value = 10000,message = "Min 1000")
     private Double area;
     @NotNull(message = "le superficie du champ SVP!")
     @CheckExisting(entityC = Farm.class)

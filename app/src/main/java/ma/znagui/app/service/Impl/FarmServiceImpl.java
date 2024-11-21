@@ -31,10 +31,11 @@ public class FarmServiceImpl implements FarmService {
 
     public FarmResponseDTO getOneFarm(Long id) {
         Farm farm = repository.findById(id).orElseThrow(() -> new ResourceNotFoundExeption("Farm",id));
+
         return mapper.farmToResponseDTO(farm);
     }
 
-    public Farm getFieldEntityByID(Long id) {
+    public Farm getFarmEntityByID(Long id) {
         return repository.findById(id).orElseThrow(() -> new ResourceNotFoundExeption("Farm",id));
     }
 
