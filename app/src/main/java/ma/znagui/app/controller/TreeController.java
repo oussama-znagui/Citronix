@@ -19,7 +19,6 @@ public class TreeController {
 
     @PostMapping
     public ResponseEntity<TreeResponseDTO> create(@Valid @RequestBody TreeCreateDTO dto){
-//        return ResponseEntity.ok(service.create(dto));
-        return null;
+        return ResponseEntity.ok(service.create(dto));
     }
 }

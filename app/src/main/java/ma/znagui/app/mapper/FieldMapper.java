@@ -6,7 +6,7 @@ import ma.znagui.app.entity.Field;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring" ,uses = TreeMapper.class)
 public interface FieldMapper {
 
     @Mapping(target = "farm.id" ,source = "farmID")

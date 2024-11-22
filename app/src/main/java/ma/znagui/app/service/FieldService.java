@@ -10,6 +10,7 @@ public interface FieldService {
     public FieldResponseDTO createField(FieldCreateDTO dto);
     public FieldResponseDTO getfield(Long field);
     public Field getFieldEntityByID(Long id);
+    public boolean isFieldacceptNowTree(Field field);
 
 
 }

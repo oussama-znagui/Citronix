@@ -5,5 +5,6 @@ import ma.znagui.app.dto.tree.TreeResponseDTO;
 
 public interface TreeService {
     public TreeResponseDTO create(TreeCreateDTO dto);
+    public TreeResponseDTO getTree(Long id);
 
 }

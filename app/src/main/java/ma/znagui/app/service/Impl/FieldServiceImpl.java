@@ -49,4 +49,18 @@ public class FieldServiceImpl implements FieldService {
     }
 
 
+
+    public boolean isFieldacceptNowTree(Field field) {
+        if (field.getTrees() == null || field.getTrees().isEmpty()){
+            return true;
+        }else {
+            int trees =  field.getTrees().size();
+           int treesArea =  trees * 100;
+            System.out.println(treesArea);
+           return field.getArea() -  treesArea >= 100;
+
+        }
+    }
+
+
 }
