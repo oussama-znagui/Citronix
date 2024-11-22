@@ -23,6 +23,10 @@ public class Harvest {
     private HarvestStatus status;
     private LocalDate date;
 
+    @ManyToOne
+    @JoinColumn(name = "field_id")
+    private Field field;    
+
     @OneToMany(mappedBy = "harvest")
     private List<HarvestTree> harvestTreesDetails;
 
