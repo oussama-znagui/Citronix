@@ -18,14 +18,13 @@ public class Harvest {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private Season season;
     private HarvestStatus status;
-    private LocalDate date;
+    private int year;
 
     @ManyToOne
     @JoinColumn(name = "field_id")
-    private Field field;    
+    private Field field;
 
     @OneToMany(mappedBy = "harvest")
     private List<HarvestTree> harvestTreesDetails;
