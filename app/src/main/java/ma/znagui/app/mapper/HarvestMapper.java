@@ -7,7 +7,7 @@ import ma.znagui.app.entity.Harvest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring", uses = FieldMapper.class)
+@Mapper(componentModel = "spring")
 public interface HarvestMapper {
 
     @Mapping(target = "field.id",source = "fieldID")

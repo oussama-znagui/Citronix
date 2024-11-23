@@ -41,6 +41,11 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
 
+    @ExceptionHandler(DateInvalideForPnating.class)
+    public ResponseEntity<String> handleDateInvalideForPnating(DateInvalideForPnating e){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+    }
+
 
 
 }

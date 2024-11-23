@@ -39,6 +39,21 @@ public class FarmServiceImpl implements FarmService {
         return repository.findById(id).orElseThrow(() -> new ResourceNotFoundExeption("Farm",id));
     }
 
+    public FarmResponseDTO updateFarm(FarmCreateDTO dto, Long farmID) {
+        Farm farm = mapper.createDTOtofarm(dto);
+        Farm toUpdate = getFarmEntityByID(farmID);
+        farm.setCreationDate(toUpdate.getCreationDate());
+
+        return mapper.farmToResponseDTO(repository.save(farm));
+    }
+
+
+
+
+
+
+
+
     public Double getFarmfreeArea(Farm farm){
         if (farm.getFields() == null){
             return farm.getArea();

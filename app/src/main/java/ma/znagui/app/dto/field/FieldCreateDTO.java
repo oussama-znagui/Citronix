@@ -14,7 +14,7 @@ import ma.znagui.app.validation.api.CheckExisting;
 @NoArgsConstructor
 public class FieldCreateDTO {
     @NotNull(message = "le superficie du champ SVP!")
-    @Min(value = 10000,message = "Min 1000")
+    @Min(value = 1000,message = "Min 1000")
     private Double area;
     @NotNull(message = "le superficie du champ SVP!")
     @CheckExisting(entityC = Farm.class)
