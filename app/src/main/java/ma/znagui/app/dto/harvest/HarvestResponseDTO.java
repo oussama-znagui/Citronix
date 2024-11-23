@@ -21,6 +21,6 @@ public class HarvestResponseDTO {
     private Long id;
     private String season;
     private String status;
-    private LocalDate date;
+    private int year;
     private FieldEmbdedDTO field;
 }
