@@ -55,6 +55,11 @@ public class HarvestServiceImpl implements HarvestService {
     }
 
     public HarvestResponseDTO getOne(Long id) {
-        return mapper.harvestToResponseDTO(repository.findById(id).orElseThrow(() -> new ResourceNotFoundExeption("harvest",id)));
+        Harvest harvest = repository.findById(id).orElseThrow(() -> new ResourceNotFoundExeption("harvest",id));
+      Double a =   harvest.getHarvestTreesDetails().stream().mapToDouble(harvestTree -> harvestTree.getQuantity()).sum();
+        HarvestResponseDTO harvestResponseDTO = mapper.harvestToResponseDTO(harvest);
+        harvestResponseDTO.setTotale(a);
+
+        return harvestResponseDTO;
     }
 }

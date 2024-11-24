@@ -17,7 +17,9 @@ import java.util.List;
 public class TreeResponseDTO {
     private Long id;
     private LocalDate plantingDate;
+    private int age;
     private FieldEmbdedDTO field;
+
 
 
 //    private List<HarvestTree> harvestTreesDetails;

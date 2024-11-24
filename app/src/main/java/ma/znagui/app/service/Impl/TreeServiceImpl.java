@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.temporal.ChronoUnit;
 
 @Service
 public class TreeServiceImpl implements TreeService {
@@ -40,7 +41,9 @@ public class TreeServiceImpl implements TreeService {
         if (fieldService.isFieldacceptNowTree(field)){
             repository.save(tree);
             tree.setField(field);
-            return mapper.treeToResponseDTO(tree);
+            TreeResponseDTO treeResponseDTO = mapper.treeToResponseDTO(tree);
+            treeResponseDTO.setAge(calculateAgeOfTree(tree.getPlantingDate()));
+            return treeResponseDTO;
         }else {
             throw new TreeCannotBePlantedException(field.getId());
         }
@@ -49,7 +52,18 @@ public class TreeServiceImpl implements TreeService {
 
     public TreeResponseDTO getTree(Long id) {
       Tree tree = repository.findById(id).orElseThrow(() -> new ResourceNotFoundExeption("Arbre",id));
-      return mapper.treeToResponseDTO(tree);
+      TreeResponseDTO treeResponseDTO = mapper.treeToResponseDTO(tree);
+      treeResponseDTO.setAge(calculateAgeOfTree(tree.getPlantingDate()));
+      return treeResponseDTO;
+    }
+
+    public Tree getTreeEntityByID(Long id) {
+        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundExeption("Arbre",id));
+    }
+
+    public int calculateAgeOfTree(LocalDate date) {
+
+        return (int) ChronoUnit.YEARS.between(date, LocalDate.now());
     }
 
     private boolean dateIsValid(LocalDate date){

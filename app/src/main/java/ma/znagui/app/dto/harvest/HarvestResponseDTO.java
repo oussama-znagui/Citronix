@@ -22,5 +22,7 @@ public class HarvestResponseDTO {
     private String season;
     private String status;
     private int year;
+    private Double totale;
     private FieldEmbdedDTO field;
+//    private List<>
 }
