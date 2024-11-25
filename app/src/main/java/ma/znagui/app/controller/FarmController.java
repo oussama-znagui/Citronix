@@ -34,13 +34,20 @@ public class FarmController {
         return ResponseEntity.ok(service.getOneFarm(id));
     }
 
-    @GetMapping("/searsh")
+    @GetMapping("/search")
     public ResponseEntity<List<FarmResponseDTO>> serashFarm(@RequestParam(required = false) String name,
                                                             @RequestParam(required = false) String location,
                                                             @RequestParam(required = false) LocalDate creationDate){
         return ResponseEntity.ok(service.findFarms(name,location,creationDate));
 
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<FarmResponseDTO> delete(@CheckExisting(entityC = Farm.class) @PathVariable("id") Long id){
+        return ResponseEntity.ok(service.deleteByID(id));
+
+    }
+
 
 
 

@@ -19,10 +19,10 @@ public class Tree {
 
     private LocalDate plantingDate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
     @JoinColumn(name = "field_id")
     private Field field;
 
-    @OneToMany(mappedBy = "tree")
+    @OneToMany(mappedBy = "tree" ,cascade = CascadeType.REMOVE)
     private List<HarvestTree> harvestTreesDetails;
 }

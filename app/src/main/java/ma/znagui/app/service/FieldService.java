@@ -1,5 +1,7 @@
 package ma.znagui.app.service;
 
+import ma.znagui.app.dto.farm.FarmCreateDTO;
+import ma.znagui.app.dto.farm.FarmResponseDTO;
 import ma.znagui.app.dto.field.FieldCreateDTO;
 import ma.znagui.app.dto.field.FieldResponseDTO;
 import ma.znagui.app.entity.Farm;
@@ -11,6 +13,7 @@ public interface FieldService {
     public FieldResponseDTO getfield(Long field);
     public Field getFieldEntityByID(Long id);
     public boolean isFieldacceptNowTree(Field field);
+    FieldResponseDTO deleteByID(Long id);
 
 
 }

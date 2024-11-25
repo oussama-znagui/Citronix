@@ -1,5 +1,6 @@
 package ma.znagui.app.service;
 
+import ma.znagui.app.dto.farm.FarmResponseDTO;
 import ma.znagui.app.dto.tree.TreeCreateDTO;
 import ma.znagui.app.dto.tree.TreeResponseDTO;
 import ma.znagui.app.entity.Tree;
@@ -11,5 +12,7 @@ public interface TreeService {
     public TreeResponseDTO getTree(Long id);
     public Tree getTreeEntityByID(Long id);
     public int calculateAgeOfTree(LocalDate date);
+
+    TreeResponseDTO deleteByID(Long id);
 
 }

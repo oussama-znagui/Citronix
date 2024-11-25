@@ -14,6 +14,7 @@ import java.io.Serializable;
 @EqualsAndHashCode
 @Embeddable
 public class HarvestTreeKey implements Serializable {
+
     private Long harvestId;
     private Long treeId;
 }

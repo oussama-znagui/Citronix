@@ -3,6 +3,7 @@ package ma.znagui.app.service.Impl;
 import lombok.SneakyThrows;
 import ma.znagui.app.dto.tree.TreeCreateDTO;
 import ma.znagui.app.dto.tree.TreeResponseDTO;
+import ma.znagui.app.entity.Farm;
 import ma.znagui.app.entity.Field;
 import ma.znagui.app.entity.Tree;
 import ma.znagui.app.exception.DateInvalideForPnating;
@@ -64,6 +65,13 @@ public class TreeServiceImpl implements TreeService {
     public int calculateAgeOfTree(LocalDate date) {
 
         return (int) ChronoUnit.YEARS.between(date, LocalDate.now());
+    }
+
+    @Override
+    public TreeResponseDTO deleteByID(Long id) {
+        Tree tree = getTreeEntityByID(id);
+        repository.deleteById(id);
+        return mapper.treeToResponseDTO(tree);
     }
 
     private boolean dateIsValid(LocalDate date){

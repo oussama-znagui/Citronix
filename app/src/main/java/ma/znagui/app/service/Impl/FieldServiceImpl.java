@@ -1,5 +1,6 @@
 package ma.znagui.app.service.Impl;
 
+import ma.znagui.app.dto.farm.FarmResponseDTO;
 import ma.znagui.app.dto.field.FieldCreateDTO;
 import ma.znagui.app.dto.field.FieldResponseDTO;
 import ma.znagui.app.entity.Farm;
@@ -60,6 +61,12 @@ public class FieldServiceImpl implements FieldService {
            return field.getArea() -  treesArea >= 100;
 
         }
+    }
+
+    public FieldResponseDTO deleteByID(Long id) {
+        Field f = getFieldEntityByID(id);
+        repository.deleteById(id);
+        return mapper.fieldToResponseDTO(f);
     }
 
 

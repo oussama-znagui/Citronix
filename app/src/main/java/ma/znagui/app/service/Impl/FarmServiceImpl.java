@@ -8,11 +8,16 @@ import ma.znagui.app.exception.ResourceNotFoundExeption;
 import ma.znagui.app.mapper.FarmMapper;
 import ma.znagui.app.repository.FarmRepository;
 import ma.znagui.app.service.FarmService;
+import ma.znagui.app.specification.FarmSpecifications;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class FarmServiceImpl implements FarmService {
@@ -65,6 +70,68 @@ public class FarmServiceImpl implements FarmService {
     }
 
     public List<FarmResponseDTO> findFarms(String name, String location, LocalDate creationDate) {
-        return List.of();
+        Specification<Farm> spec = Specification.where(FarmSpecifications.hasName(name))
+                .and(FarmSpecifications.hasLocation(location))
+                .and(FarmSpecifications.wasCreatedAfter(creationDate));
+
+//
+//        System.out.println(repository.findAll(spec));
+
+        return repository.findAll(spec).stream().map(farm -> mapper.farmToResponseDTO(farm)).toList();
+
     }
+
+    public FarmResponseDTO deleteByID(Long id) {
+        Farm farm = getFarmEntityByID(id);
+        repository.deleteById(id);
+        return mapper.farmToResponseDTO(farm);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public List<FarmResponseDTO> getFarmlHarvsedInh(){
+        List<Farm> farms = repository.findAll();
+        List<Farm> farmsResut = new ArrayList<>();
+
+    for (int i = 0;i < farms.size();i++){
+       List<Field> fields =  farms.get(i).getFields();
+       for (int j = 0;j < fields.size();j++){
+           if (fields.get(i).getHarvests() != null){
+               farmsResut.add(farms.get(i));
+           }
+       }
+    }
+
+
+
+
+
+
+        return null;
+    }
+
+
+
 }

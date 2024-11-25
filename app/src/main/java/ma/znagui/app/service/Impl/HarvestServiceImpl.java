@@ -4,6 +4,7 @@ import lombok.SneakyThrows;
 import ma.znagui.app.dto.HarvestTree.HarvestTreeEmbdedDTO;
 import ma.znagui.app.dto.harvest.HarvestCreateDTO;
 import ma.znagui.app.dto.harvest.HarvestResponseDTO;
+import ma.znagui.app.entity.Farm;
 import ma.znagui.app.entity.Field;
 import ma.znagui.app.entity.Harvest;
 import ma.znagui.app.entity.HarvestTree;
@@ -72,5 +73,11 @@ public class HarvestServiceImpl implements HarvestService {
 
     public Harvest getHarvestEntityByID(Long id) {
         return  repository.findById(id).orElseThrow(() -> new ResourceNotFoundExeption("harvest",id));
+    }
+
+    public HarvestResponseDTO deleteByID(Long id) {
+        Harvest harvest = getHarvestEntityByID(id);
+        repository.deleteById(id);
+        return mapper.harvestToResponseDTO(harvest);
     }
 }

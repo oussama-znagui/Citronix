@@ -7,26 +7,22 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Farm {
+public class Sale {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotBlank
-    private String name;
-    @NotBlank
-    private String location;
+    private String clientName;
     @NotNull
-    private Double area;
+    private int qte;
+    @NotNull
+    private Double unitPrice;
 
-    private LocalDate creationDate;
-    @OneToMany(mappedBy = "farm" ,cascade = CascadeType.REMOVE)
-    private List<Field> fields;
-
+    @ManyToOne
+    @JoinColumn(name = "harvest_id" ,nullable = false)
+    private Harvest harvest;
 }

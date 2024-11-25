@@ -8,13 +8,15 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface FarmService {
-    public FarmResponseDTO create(FarmCreateDTO dto);
-    public FarmResponseDTO getOneFarm(Long id);
-    public Farm getFarmEntityByID(Long id);
-    public FarmResponseDTO updateFarm(FarmCreateDTO dto,Long farmID);
+     FarmResponseDTO create(FarmCreateDTO dto);
+     FarmResponseDTO getOneFarm(Long id);
+     Farm getFarmEntityByID(Long id);
+     FarmResponseDTO updateFarm(FarmCreateDTO dto,Long farmID);
 
-    public Double getFarmfreeArea(Farm farm);
+     Double getFarmfreeArea(Farm farm);
 
 
-    public List<FarmResponseDTO> findFarms(String name, String location, LocalDate creationDate);
+     List<FarmResponseDTO> findFarms(String name, String location, LocalDate creationDate);
+    FarmResponseDTO deleteByID(Long id);
+
 }

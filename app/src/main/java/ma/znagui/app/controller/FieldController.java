@@ -1,8 +1,10 @@
 package ma.znagui.app.controller;
 
 import jakarta.validation.Valid;
+import ma.znagui.app.dto.farm.FarmResponseDTO;
 import ma.znagui.app.dto.field.FieldCreateDTO;
 import ma.znagui.app.dto.field.FieldResponseDTO;
+import ma.znagui.app.entity.Farm;
 import ma.znagui.app.entity.Field;
 import ma.znagui.app.service.FieldService;
 import ma.znagui.app.validation.api.CheckExisting;
@@ -26,6 +28,12 @@ public class FieldController {
         return ResponseEntity.ok(service.getfield(id));
 
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<FieldResponseDTO> delete(@CheckExisting(entityC = Farm.class) @PathVariable("id") Long id){
+        return ResponseEntity.ok(service.deleteByID(id));
+
+    }
+
 
 
 
