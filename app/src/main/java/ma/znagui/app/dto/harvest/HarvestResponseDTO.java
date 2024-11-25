@@ -5,6 +5,7 @@ package ma.znagui.app.dto.harvest;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ma.znagui.app.dto.HarvestTree.HarvestTreeEmbdedDTO;
 import ma.znagui.app.dto.field.FieldEmbdedDTO;
 import ma.znagui.app.entity.Field;
 import ma.znagui.app.entity.HarvestTree;
@@ -24,5 +25,5 @@ public class HarvestResponseDTO {
     private int year;
     private Double totale;
     private FieldEmbdedDTO field;
-//    private List<>
+    private List<HarvestTreeEmbdedDTO> harvestTrees;
 }

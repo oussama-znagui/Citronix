@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.List;
+
 @RestController
 @RequestMapping("/farm")
 public class FarmController {
@@ -29,6 +32,14 @@ public class FarmController {
     @GetMapping(value = {"/{id}"})
     public ResponseEntity<FarmResponseDTO> getFarm(@CheckExisting(entityC = Farm.class) @PathVariable("id") Long id){
         return ResponseEntity.ok(service.getOneFarm(id));
+    }
+
+    @GetMapping("/searsh")
+    public ResponseEntity<List<FarmResponseDTO>> serashFarm(@RequestParam(required = false) String name,
+                                                            @RequestParam(required = false) String location,
+                                                            @RequestParam(required = false) LocalDate creationDate){
+        return ResponseEntity.ok(service.findFarms(name,location,creationDate));
+
     }
 
 

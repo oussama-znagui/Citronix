@@ -1,6 +1,7 @@
 package ma.znagui.app.mapper;
 
 import ma.znagui.app.dto.HarvestTree.HarvestTreeCreateDTO;
+import ma.znagui.app.dto.HarvestTree.HarvestTreeEmbdedDTO;
 import ma.znagui.app.dto.HarvestTree.HarvestTreeResponseDTO;
 import ma.znagui.app.entity.Harvest;
 import ma.znagui.app.entity.HarvestTree;
@@ -22,4 +23,5 @@ public interface HarvestTreeMapper {
    public HarvestTree createDTOtoHarvestTree(HarvestTreeCreateDTO dto);
 
     public HarvestTreeResponseDTO harvestTreeToResponseDTO(HarvestTree harvestTree);
+    public HarvestTreeEmbdedDTO harvestTreeToEmbdedDTO(HarvestTree harvestTree);
 }

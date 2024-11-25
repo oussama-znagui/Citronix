@@ -1,14 +1,17 @@
 package ma.znagui.app.service.Impl;
 
 import lombok.SneakyThrows;
+import ma.znagui.app.dto.HarvestTree.HarvestTreeEmbdedDTO;
 import ma.znagui.app.dto.harvest.HarvestCreateDTO;
 import ma.znagui.app.dto.harvest.HarvestResponseDTO;
 import ma.znagui.app.entity.Field;
 import ma.znagui.app.entity.Harvest;
+import ma.znagui.app.entity.HarvestTree;
 import ma.znagui.app.enums.HarvestStatus;
 import ma.znagui.app.exception.HarverstSeasonAlreadyExistsException;
 import ma.znagui.app.exception.ResourceNotFoundExeption;
 import ma.znagui.app.mapper.HarvestMapper;
+import ma.znagui.app.mapper.HarvestTreeMapper;
 import ma.znagui.app.repository.HarvestRepository;
 import ma.znagui.app.service.FieldService;
 import ma.znagui.app.service.HarvestService;
@@ -25,7 +28,8 @@ public class HarvestServiceImpl implements HarvestService {
     HarvestRepository repository;
     @Autowired
     FieldService fieldService;
-
+    @Autowired
+    HarvestTreeMapper harvestTreeMapper;
 
     @SneakyThrows
     public HarvestResponseDTO createHarvest(HarvestCreateDTO dto) {
@@ -60,6 +64,13 @@ public class HarvestServiceImpl implements HarvestService {
         HarvestResponseDTO harvestResponseDTO = mapper.harvestToResponseDTO(harvest);
         harvestResponseDTO.setTotale(a);
 
+
+        List<HarvestTreeEmbdedDTO> harvestTreeEmbdedDTOS=  harvest.getHarvestTreesDetails().stream().map(harvestTree -> harvestTreeMapper.harvestTreeToEmbdedDTO(harvestTree)).toList();
+    harvestResponseDTO.setHarvestTrees(harvestTreeEmbdedDTOS);
         return harvestResponseDTO;
+    }
+
+    public Harvest getHarvestEntityByID(Long id) {
+        return  repository.findById(id).orElseThrow(() -> new ResourceNotFoundExeption("harvest",id));
     }
 }

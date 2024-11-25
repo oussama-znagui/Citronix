@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class FarmServiceImpl implements FarmService {
@@ -61,5 +62,9 @@ public class FarmServiceImpl implements FarmService {
             Double usedArea  = farm.getFields().stream().mapToDouble(Field::getArea).sum();
             return farm.getArea() - usedArea;
         }
+    }
+
+    public List<FarmResponseDTO> findFarms(String name, String location, LocalDate creationDate) {
+        return List.of();
     }
 }

@@ -51,6 +51,11 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
 
+    @ExceptionHandler(NonMatchingField.class)
+    public ResponseEntity<String> handelNonMatchingField(NonMatchingField e){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+    }
+
 
 
 }
